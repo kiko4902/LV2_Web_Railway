@@ -1,9 +1,48 @@
-<h1>Galerijaslika</h1>
-    <section class="gallery">
-        <% images.forEach(image =>{ %>
-        <figure>
-            <img src="<%= image.url%>" alt="<%= image.title %>">
-            <figcaption><%= image.title %></figcaption>
-        </figure>
-        <% });%>
-    </section>
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Galerija slika generirana EJS-om." />
+  <meta http-equiv="Content-Language" content="hr" />
+  <link rel="stylesheet" href="/styles/gallery_style.css" />
+  <title>Galerija slika</title>
+</head>
+<body>
+  <header>
+    <h1>Gallery page</h1>
+  </header>
+
+  <nav aria-label="Primary navigation">
+    <h2 id="primary_nav">Primary Navigation</h2>
+    <ul class="dropdown">
+      <li><a href="/" aria-label="Back to start page">Start</a></li>
+      <li><a href="/charts.html" aria-label="Charts page">Charts</a></li>
+      <li><a href="/slike" aria-label="Gallery page">Gallery</a></li>
+    </ul>
+  </nav>
+
+  <h1 class="gallery_name">Galerija slika</h1>
+  <section class="content">
+    <% images.forEach((image, i) => { %>
+      <figure class="galerija_slika">
+        <a class="image-popup-vertical-fit" href="#img<%= i+1 %>" title="<%= image.title %>">
+          <img src="<%= image.url %>" alt="<%= image.title %>" />
+        </a>
+        <figcaption><%= image.title %></figcaption>
+      </figure>
+    <% }) %>
+  </section>
+
+  <% images.forEach((image, i) => { %>
+    <a href="#" class="lightbox" id="img<%= i+1 %>">
+      <span class="close">X</span>
+      <img src="<%= image.url %>"  alt="<%= image.title %>" />
+    </a>
+  <% }) %>
+
+  <footer>
+    <p>&copy; 2025. Web Programiranje. Kristian Džoić, DRD.</p>
+  </footer>
+</body>
+</html>

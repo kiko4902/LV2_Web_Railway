@@ -17,7 +17,7 @@ app.get('/slike', (req, res)=> {
     const files = fs.readdirSync(folderPath);
     
     const images = files
-    .filter(file=> file.endsWith('.jpg') || file.endsWith('.svg'))
+    .filter(file=> file.endsWith('.png') || file.endsWith('.svg'))
     .map((file,index) => ({
         url: `/images/${file}`,
         id: `slika${index + 1}`,
@@ -26,7 +26,7 @@ app.get('/slike', (req, res)=> {
     res.render('slike', { images});
 });
 
-app.listen(3000, () => {
-    console.log('Server running on http://localhost:3000');
+app.listen(PORT, () => {
+    console.log('Server pokrenut na portu ${PORT}');
 });
     
