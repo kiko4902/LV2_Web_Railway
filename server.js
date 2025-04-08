@@ -4,6 +4,14 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(express.static('public'));
+
+app.set('view engine', 'ejs');
+
+app.get('/', (req, res) => {
+    res.redirect('/slike');
+});
+
 app.get('/slike', (req, res)=> {
     const folderPath = path.join(__dirname, 'public','images');
     const files = fs.readdirSync(folderPath);
@@ -18,7 +26,7 @@ app.get('/slike', (req, res)=> {
     res.render('slike', { images});
 });
 
- app.listen(PORT, () => {
-    console.log('Server pokrenut na portu ${PORT}');
-    });
+app.listen(3000, () => {
+    console.log('Server running on http://localhost:3000');
+});
     
